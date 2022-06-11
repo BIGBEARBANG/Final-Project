@@ -104,7 +104,7 @@ with st.echo(code_location='below'):
     sns.regplot(x=df_ri.loc['Price on Russian Market'],y=df_ri.loc['Average cost per tablet 2013-2019'],ax=ax)
     st.pyplot(fig_3)
     
-    st.caption("Mostly, yes. Though there are drugs that fall out of the confidence interval - Mirtazapine and Agomelatine) 
+    st.caption("Mostly, yes. Though there are drugs that fall out of the confidence interval - Mirtazapine and Agomelatine") 
 
     df_sp=df_ri.append([df_t.loc['Average amount of prescriptions'],df_t.loc['clinical eff']]).dropna(axis=1).transpose().reset_index()
     df_sp['Antidepressant Type']=df_sp['index'].map(types_of_antidepressants)
