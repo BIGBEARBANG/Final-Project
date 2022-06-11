@@ -4,7 +4,6 @@ import seaborn as sns
 import translators as ts
 from bs4 import BeautifulSoup
 import requests
-import re
 import folium
 import streamlit as st
 import geopy
