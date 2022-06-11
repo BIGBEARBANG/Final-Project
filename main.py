@@ -1,6 +1,4 @@
 import pandas as pd
-import glob
-import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 import translators as ts
