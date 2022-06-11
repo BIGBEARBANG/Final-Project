@@ -1,5 +1,4 @@
 pandas
-matplotlib.pyplot
 seaborn
 translators
 bs4
@@ -8,5 +7,3 @@ re
 folium
 streamlit
 streamlit_folium
-
-
