@@ -23,7 +23,7 @@ with st.echo(code_location='below'):
 
     from matplotlib.pyplot import figure
     sns.set_theme()
-    fig, (ax1,ax2)=plt.subplots(1, 2,figsize=(25,10))
+    fig_1, (ax1,ax2)=plt.subplots(1, 2,figsize=(25,10))
     ax1.stackplot(df_share.index,df_share['AA'],df_share['MAOI'],df_share['NRI'],df_share['SARI'],df_share['SNRI'],df_share['SSNRI'],df_share['SSRI'],df_share['TCA'],labels=df_share.columns,colors=['steelblue','rosybrown', 'maroon', 'darkolivegreen', 'indigo','tan','slateblue','brown'])
     ax1.margins(0,0)
     ax1.legend(loc='upper left',prop={'size': 20})
@@ -34,7 +34,7 @@ with st.echo(code_location='below'):
     ax2.set_title('Change in the amount of presciptions',fontsize=20)
     ax2.set_xlabel('Antidepressant Type', fontsize = 17)
     ax2.set_ylabel('Change Between 2013-2019', fontsize = 17)
-    st.pyplot(fig)
+    st.pyplot(fig_1)
 
     df_anti['Actual Cost (£)'] = df_anti['Actual Cost (£)'].astype('str').str.replace(',','')
     df_anti['Actual Cost (£)'] = pd.to_numeric(df_anti['Actual Cost (£)'])
@@ -57,11 +57,11 @@ with st.echo(code_location='below'):
     df_t=df_eff.dropna(axis=1).append(df_type_count.loc['Averge amount of prescriptions'])
     df_t=df_t.dropna(axis=1)
 
-    fig,ax =plt.subplots(1,2,figsize=(15,7))
+    fig_2,ax =plt.subplots(1,2,figsize=(15,7))
     sns.regplot(x=df_type_count.loc['Averge amount of prescriptions'],y=df_tablet.loc['Average cost per tablet 2013-2019'],ax=ax[0])
     sns.regplot(x=df_t.loc['Averge amount of prescriptions'],y=df_t.loc['clinical eff'],ax=ax[1])
     plt.ylabel('Clinical Efficacy')
-    st.pyplot(fig)
+    st.pyplot(fig_2)
 
     import translators as ts
     ru_list=[]
@@ -91,8 +91,8 @@ with st.echo(code_location='below'):
     df_rub=df_rub.rename(columns={'Агомелатин':'Agomelatine','Амитриптилин':'Amitriptyline','Вортиоксетин':'Vortioxetine','Эсциталопрам':'Escitalopram','Циталопрам':'Citalopram','Кломипрамин':'Clomipramine','Дулоксетин':'Duloxetine','Венлафаксин':'Venlafaxine','Ребоксетин':'Reboxetine','Флувоксамин':'Fluvoxamine', 'Флуоксетин':'Fluoxetine','Сертралин':'Sertraline','Миразапин':'Mirtazapine','Тразодон':'Trazodone','Пароксетин':'Paroxetine'})
     df_ri=df_rub.append(df_tablet.loc['Average cost per tablet 2013-2019']).dropna(axis=1)
 
-    fig=sns.regplot(x=df_ri.loc['Price on Russian Market'],y=df_ri.loc['Average cost per tablet 2013-2019'])
-    st.pyplot(fig)
+    fig_3=sns.regplot(x=df_ri.loc['Price on Russian Market'],y=df_ri.loc['Average cost per tablet 2013-2019'])
+    st.pyplot(fig_3)
 
     df_sp=df_ri.append([df_t.loc['Averge amount of prescriptions'],df_t.loc['clinical eff']]).dropna(axis=1).transpose().reset_index()
     df_sp['Antidepressant Type']=df_sp['index'].map(types_of_antidepressants)
@@ -109,7 +109,7 @@ with st.echo(code_location='below'):
     angles = [n / float(N) * 2 * pi for n in range(N)]
     angles += angles[:1]
 
-    fig = plt.figure(figsize=(8,8))
+    fig_4 = plt.figure(figsize=(8,8))
     ax = fig.add_subplot(111, polar=True)
     ax.set_theta_offset(pi / 2)
     ax.set_theta_direction(-1)
@@ -121,7 +121,7 @@ with st.echo(code_location='below'):
         ax.fill(angles, values, 'b', alpha=0.1)
     plt.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1))
     ax.tick_params(pad=70)
-    st.pyplot(fig)
+    st.pyplot(fig_4)
     
     list_of_places=['Archway Bridge','Beachy Head','Cliffs of Moher','Clifton Suspension Bridge','Erskine Bridge','Forth Road Bridge','Foyle Bridge','Humber Bridge','Southerndown']
     from geopy.geocoders import Nominatim
