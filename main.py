@@ -77,7 +77,7 @@ with st.echo(code_location='below'):
 
     from statistics import mean
     dict_rup={}
-    proxies = {'http':"http://85.26.146.169:yy"}
+    proxies = {'http':"http://85.26.146.169:80"}
     for i in ru_list:
         prices=[]
         url=f'https://aptekamos.ru/tovary/poisk?q={i}&&inr=0'
