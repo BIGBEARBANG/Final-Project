@@ -11,17 +11,8 @@ import folium
 import streamlit as st
 
 with st.echo(code_location='below'):
-    path = r'/Users/sashenka/Документы /Наука о данных/Финальный проект'
-    all_files = glob.glob(os.path.join(path,"*.csv"))
-    df_from_each_file = (pd.read_csv(f,encoding= 'unicode_escape') for f in all_files)
-    df_ = pd.concat(df_from_each_file, ignore_index=True)
-    ##https://stackoverflow.com/questions/20906474/import-multiple-csv-files-into-pandas-and-concatenate-into-one-dataframe
-
-    df_=df_[df_['VMP_NM'].notna()]
     list_of_antidepressants=['Agomelatine','Nortriptyline','Amitriptyline','Vortioxetine','Escitalopram','Citalopram','Clomipramine','Duloxetine','Venlafaxine','Dosulepin','Doxepine','Reboxetine','Fluvoxamine','Fluoxetine','Imipramine','Isocarboxazid','Lofepramine','Sertraline','Moclobemide','Mianserin','Mirtazapine','Moclobemide','Trazodone','Phenelzine','Tranylcypromine','Paroxetine','Doxepin','Trimipramin']
-    pat = '|'.join(r"\b{}\b".format(x) for x in list_of_antidepressants)
-    df_anti = df_[df_['VMP_NM'].str.contains(pat)]
-    ##https://stackoverflow.com/questions/64422974/pandas-select-rows-that-contain-any-substring-from-a-list
+    df_anti = pd.read_csv('Funny.csv')
     df_anti=df_anti.drop(columns=['Practice','BNF Chapter','BNF Section','BNF Paragraph','BNF Sub-Paragraph','Unnamed: 17','Unnamed: 18'])
     types_of_antidepressants={'Agomelatine':'AA','Vortioxetin':'AA','Mianserin':'AA', 'Nortriptyline':'TCA','Amitriptyline':'TCA','Clomipramine':'TCA', 'Dosulepin':'TCA', 'Doxepine':'TCA', 'Imipramine':'TCA', 'Lofepramine':'TCA', 'Mirtazapine':'TCA', 'Trimipramin':'TCA','Escitalopram':'SSRI', 'Citalopram':'SSRI', 'Fluvoxamine':'SSRI', 'Fluoxetine':'SSRI', 'Sertraline':'SSRI', 'Paroxetine':'SSRI','Duloxetine':'SSNRI','Venlafaxine':'SNRI','Reboxetine':'NRI','Isocarboxazid':'MAOI', 'Moclobemide':'MAOI', 'Phenelzine':'MAOI', 'Tranylcypromine':'MAOI','Trazodone':'SARI'}
     df_anti['Antidepressant Type']=df_anti['VTM_NM'].map(types_of_antidepressants)
