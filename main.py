@@ -34,7 +34,7 @@ with st.echo(code_location='below'):
     ax2.set_title('Change in the amount of presciptions',fontsize=20)
     ax2.set_xlabel('Antidepressant Type', fontsize = 17)
     ax2.set_ylabel('Change Between 2013-2019', fontsize = 17)
-    fig.show()
+    st.pyplot(fig)
 
     df_anti['Actual Cost (£)'] = df_anti['Actual Cost (£)'].astype('str').str.replace(',','')
     df_anti['Actual Cost (£)'] = pd.to_numeric(df_anti['Actual Cost (£)'])
@@ -61,7 +61,7 @@ with st.echo(code_location='below'):
     sns.regplot(x=df_type_count.loc['Averge amount of prescriptions'],y=df_tablet.loc['Average cost per tablet 2013-2019'],ax=ax[0])
     sns.regplot(x=df_t.loc['Averge amount of prescriptions'],y=df_t.loc['clinical eff'],ax=ax[1])
     plt.ylabel('Clinical Efficacy')
-    fig.show()
+    st.pyplot(fig)
 
     import translators as ts
     ru_list=[]
@@ -92,6 +92,7 @@ with st.echo(code_location='below'):
     df_ri=df_rub.append(df_tablet.loc['Average cost per tablet 2013-2019']).dropna(axis=1)
 
     sns.regplot(x=df_ri.loc['Price on Russian Market'],y=df_ri.loc['Average cost per tablet 2013-2019'])
+    st.pyplot(plt.gcf())
 
     df_sp=df_ri.append([df_t.loc['Averge amount of prescriptions'],df_t.loc['clinical eff']]).dropna(axis=1).transpose().reset_index()
     df_sp['Antidepressant Type']=df_sp['index'].map(types_of_antidepressants)
@@ -120,8 +121,8 @@ with st.echo(code_location='below'):
         ax.fill(angles, values, 'b', alpha=0.1)
     plt.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1))
     ax.tick_params(pad=70)
-    fig.show()
-
+    st.pyplot(fig)
+    
     list_of_places=['Archway Bridge','Beachy Head','Cliffs of Moher','Clifton Suspension Bridge','Erskine Bridge','Forth Road Bridge','Foyle Bridge','Humber Bridge','Southerndown']
     from geopy.geocoders import Nominatim
     geolocator = Nominatim(user_agent="email@email.com")
