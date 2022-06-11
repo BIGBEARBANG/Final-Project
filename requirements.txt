@@ -1,7 +1,7 @@
 pandas
 seaborn
 translators
-beautifulsoup4
+bs4
 requests
 folium
 streamlit
