@@ -102,7 +102,7 @@ with st.echo(code_location='below'):
     df_spider=df_sp.groupby(['Antidepressant Type']).mean().rename(columns={'clinical eff':'Clinical efficacy'}).reset_index()
     df_spider['Price on Russian Market']=df_spider['Price on Russian Market']/(df_spider.loc[3]['Price on Russian Market']/df_spider.loc[3]['Clinical efficacy'])
     df_spider['Average cost per tablet 2013-2019']=df_spider['Average cost per tablet 2013-2019']/(df_spider.loc[3]['Average cost per tablet 2013-2019']/df_spider.loc[3]['Clinical efficacy'])
-    df_spider['Averge amount of prescriptions']=df_spider['Averge amount of prescriptions']/(df_spider.loc[3]['Averge amount of prescriptions']/df_spider.loc[3]['Clinical efficacy'])
+    df_spider['Average amount of prescriptions']=df_spider['Average amount of prescriptions']/(df_spider.loc[3]['Average amount of prescriptions']/df_spider.loc[3]['Clinical efficacy'])
 
     ##https://www.python-graph-gallery.com/391-radar-chart-with-several-individuals
     import numpy as np
