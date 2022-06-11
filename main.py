@@ -75,22 +75,8 @@ with st.echo(code_location='below'):
     ru_list[24]='Транилципромин'
     ru_list[26]='Доксепин'
 
-    from statistics import mean
-    dict_rup={}
-    proxies = {'http':"http://188.32.241.34:81",'https':"http://188.32.241.34:81"}
-    for i in ru_list:
-        prices=[]
-        url=f'https://aptekamos.ru/tovary/poisk?q={i}&&inr=0'
-        r = requests.get(url,proxies=proxies,headers={'User-Agent': 'Chrome'})
-        soup = BeautifulSoup(r.text,features="lxml")
-        soup.find_all(class_="product-price bold-text function")
-        for div_tag in soup.find_all(class_="product-price bold-text function"):
-            prices.append(mean(list(map(float,str(div_tag.text).strip().replace('\xa0','').replace('...','').split('  ')))))
-            dict_rup[i]=prices
-    for key in dict_rup:
-        dict_rup[key]=mean(dict_rup[key])
-
-    df_rub=pd.DataFrame(dict_rup, index=['Price on Russian Market',])
+    df_rub=pd.read_csv('Rub Prices.csv')
+    df_rub.set_index(df_rub['Unnamed: 0']).drop(columns=['Unnamed: 0'])
     df_rub=df_rub.rename(columns={'Агомелатин':'Agomelatine','Амитриптилин':'Amitriptyline','Вортиоксетин':'Vortioxetine','Эсциталопрам':'Escitalopram','Циталопрам':'Citalopram','Кломипрамин':'Clomipramine','Дулоксетин':'Duloxetine','Венлафаксин':'Venlafaxine','Ребоксетин':'Reboxetine','Флувоксамин':'Fluvoxamine', 'Флуоксетин':'Fluoxetine','Сертралин':'Sertraline','Миразапин':'Mirtazapine','Тразодон':'Trazodone','Пароксетин':'Paroxetine'})
     df_ri=df_rub.append(df_tablet.loc['Average cost per tablet 2013-2019']).dropna(axis=1)
 
