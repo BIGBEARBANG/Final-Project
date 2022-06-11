@@ -76,7 +76,8 @@ with st.echo(code_location='below'):
     ru_list[26]='Доксепин'
 
     df_rub=pd.read_csv('Rub Prices.csv')
-    df_rub.set_index(df_rub['Unnamed: 0']).drop(columns=['Unnamed: 0'])
+    df_rub.drop(columns=['Unnamed: 0'])
+    df_rub=df_rub.rename(index={0: 'Price on Russian Market'}).drop(columns=['Unnamed: 0'])
     df_rub=df_rub.rename(columns={'Агомелатин':'Agomelatine','Амитриптилин':'Amitriptyline','Вортиоксетин':'Vortioxetine','Эсциталопрам':'Escitalopram','Циталопрам':'Citalopram','Кломипрамин':'Clomipramine','Дулоксетин':'Duloxetine','Венлафаксин':'Venlafaxine','Ребоксетин':'Reboxetine','Флувоксамин':'Fluvoxamine', 'Флуоксетин':'Fluoxetine','Сертралин':'Sertraline','Миразапин':'Mirtazapine','Тразодон':'Trazodone','Пароксетин':'Paroxetine'})
     df_ri=df_rub.append(df_tablet.loc['Average cost per tablet 2013-2019']).dropna(axis=1)
 
