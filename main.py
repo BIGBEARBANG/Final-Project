@@ -101,7 +101,7 @@ with st.echo(code_location='below'):
     df_sp=df_ri.append([df_t.loc['Average amount of prescriptions'],df_t.loc['clinical eff']]).dropna(axis=1).transpose().reset_index()
     df_sp['Antidepressant Type']=df_sp['index'].map(types_of_antidepressants)
     df_spider=df_sp.groupby(['Antidepressant Type']).mean().rename(columns={'clinical eff':'Clinical efficacy'}).reset_index()
-    st.dataframe(df_spider)
+    st.dataframe(df_rub)
     df_spider['Price on Russian Market']=df_spider['Price on Russian Market']/(df_spider.loc[3]['Price on Russian Market']/df_spider.loc[3]['Clinical efficacy'])
     df_spider['Average cost per tablet 2013-2019']=df_spider['Average cost per tablet 2013-2019']/(df_spider.loc[3]['Average cost per tablet 2013-2019']/df_spider.loc[3]['Clinical efficacy'])
     df_spider['Average amount of prescriptions']=df_spider['Average amount of prescriptions']/(df_spider.loc[3]['Average amount of prescriptions']/df_spider.loc[3]['Clinical efficacy'])
