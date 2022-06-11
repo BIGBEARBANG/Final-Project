@@ -1,0 +1,27 @@
+import pandas as pd
+import glob
+import os
+path = r'/Users/sashenka/Документы /Наука о данных/Финальный проект'
+all_files = glob.glob(os.path.join(path,"*.csv"))
+df_from_each_file = (pd.read_csv(f,encoding= 'unicode_escape') for f in all_files)
+df_ = pd.concat(df_from_each_file, ignore_index=True)
+##https://stackoverflow.com/questions/20906474/import-multiple-csv-files-into-pandas-and-concatenate-into-one-dataframe
+df_=df_[df_['VMP_NM'].notna()]
+df_
+pat = '|'.join(r"\b{}\b".format(x) for x in list_of_antidepressants)
+df_anti = df_[df_['VMP_NM'].str.contains(pat)]
+##https://stackoverflow.com/questions/64422974/pandas-select-rows-that-contain-any-substring-from-a-list
+from statistics import mean
+dict_rup={}
+for i in ru_list:
+    prices=[]
+    url=f'https://aptekamos.ru/tovary/poisk?q={i}&&inr=0'
+    r = requests.get(url)
+    soup = BeautifulSoup(r.text)
+    soup.find_all(class_="product-price bold-text function")
+    for div_tag in soup.find_all(class_="product-price bold-text function"):
+        prices.append(mean(list(map(float,str(div_tag.text).strip().replace('\xa0','').replace('...','').split('  ')))))
+        dict_rup[i]=prices
+for key in dict_rup:
+    dict_rup[key]=mean(dict_rup[key])
+
