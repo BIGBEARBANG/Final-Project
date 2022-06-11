@@ -81,7 +81,7 @@ with st.echo(code_location='below'):
         prices=[]
         url=f'https://aptekamos.ru/tovary/poisk?q={i}&&inr=0'
         r = requests.get(url)
-        soup = BeautifulSoup(r.text)
+        soup = BeautifulSoup(r.text, features="lxml")
         soup.find_all(class_="product-price bold-text function")
         for div_tag in soup.find_all(class_="product-price bold-text function"):
             prices.append(mean(list(map(float,str(div_tag.text).strip().replace('\xa0','').replace('...','').split('  ')))))
