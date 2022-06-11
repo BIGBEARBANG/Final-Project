@@ -6,4 +6,3 @@ requests
 folium
 streamlit
 streamlit_folium
-matplotlib
