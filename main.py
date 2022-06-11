@@ -26,13 +26,13 @@ with st.echo(code_location='below'):
     st.title("GPs Prescribing Antidepressants in Northern Ireland")
     st.caption("About Dataset: Датасет содержит информацию о всех рецептах, выданных врачами Северной Ирландии с 2013 по 2019 г. - из них выбраны те, что содержат лекарства из группы антидепрессантов, указанных в реестре Великобритании")        
     st.header("Types of Antidepressants")
-    st.caption("AA - Atypical Antidepressants - Those that act in a manner that is different from any other types of antidepressants. Reserved for patients who do not respond to other medicine")
-    st.caption("MAOIs - Monoamine oxidase inhibitors - MAOI is an older type of antidepressant that is rarely used nowadays. Comes with dietary restrictions because of the elevated tyramine levels in the blood")
-    st.caption("NRI - Norepinephrine reuptake inhibitor - Contarary to the name, more widely used as a treatment to ADHD and Narcolepsy than to depression for their effect was proven to be indistinguishable from placebo")
-    st.caption("SARIs - Serotonin antagonists and reuptake inhibitors")
-    st.caption("SNRI - Serotonin-noradrenaline reuptake inhibitors - Were designed to be more potent in treating Major Depressive Disorder than their SSRI predecessors, though the evidence on that is uncertain")
-    st.caption("SSRI - Serotonin-noradrenaline reuptake inhibitors - Most widely prescribed ones for the side effects vary from none to moderate")
-    st.caption("TCAs - Tricyclic antidepressants - Used to treat BPD and OCD, as well as MAD")
+    st.subheader("AA - Atypical Antidepressants - Those that act in a manner that is different from any other types of antidepressants. Reserved for patients who do not respond to other medicine")
+    st.subheader("MAOIs - Monoamine oxidase inhibitors - MAOI is an older type of antidepressant that is rarely used nowadays. Comes with dietary restrictions because of the elevated tyramine levels in the blood")
+    st.subheader("NRI - Norepinephrine reuptake inhibitor - Contarary to the name, more widely used as a treatment to ADHD and Narcolepsy than to depression for their effect was proven to be indistinguishable from placebo")
+    st.subheader("SARIs - Serotonin antagonists and reuptake inhibitors")
+    st.subheader("SNRI - Serotonin-noradrenaline reuptake inhibitors - Were designed to be more potent in treating Major Depressive Disorder than their SSRI predecessors, though the evidence on that is uncertain")
+    st.subheader("SSRI - Serotonin-noradrenaline reuptake inhibitors - Most widely prescribed ones for the side effects vary from none to moderate")
+    st.subheader("TCAs - Tricyclic antidepressants - Used to treat BPD and OCD, as well as MAD")
     
 
     from matplotlib.pyplot import figure
@@ -49,7 +49,7 @@ with st.echo(code_location='below'):
     ax2.set_xlabel('Antidepressant Type', fontsize = 17)
     ax2.set_ylabel('Change Between 2013-2019', fontsize = 17)
     st.pyplot(fig_1)
-    st.caption("SNRIs are getting more popular as far as GPs prescription choice goes, the older ones such as MAOIs and TCAs are being substituted for ones that cause lsee concern on the matter of side effects") 
+    st.subheader("SNRIs are getting more popular as far as GPs prescription choice goes, the older ones such as MAOIs and TCAs are being substituted for ones that cause less concern on the matter of side effects") 
     
 
     df_anti['Actual Cost (£)'] = df_anti['Actual Cost (£)'].astype('str').str.replace(',','')
@@ -79,8 +79,8 @@ with st.echo(code_location='below'):
     plt.ylabel('Clinical Efficacy')
     st.pyplot(fig_2)
     
-    st.caption("Do GP's choices abide to the intuitive criterion? The more expensive the drug is the less amount of prescriptions are being made. Though the interconnection being present, it is still moderate for the effectiveness usually negates the expenses")
-    st.caption("The interconnection between clinical efficacy, assigned to each drug over the course of 2018 Lancet's investigation, and number of yearly prescriptions is much more prominent")   
+    st.subheader("Do GP's choices abide to the intuitive criterion? The more expensive the drug is the less amount of prescriptions are being made. Though the interconnection being present, it is still moderate for the effectiveness usually negates the expenses")
+    st.subheader("The interconnection between clinical efficacy, assigned to each drug over the course of 2018 Lancet's investigation, and number of yearly prescriptions is much more prominent")   
 
     import translators as ts
     ru_list=[]
@@ -136,16 +136,16 @@ with st.echo(code_location='below'):
     plt.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1))
     ax.tick_params(pad=70)
     st.pyplot(fig_4)
-    st.caption("AAs being the most expensive ones, fail to deliver")
-    st.caption("SSRIs are the run for the buck")
-    st.caption("SSNRIs are dominating the market in terms of clinical efficacy, though, the evidence is flawed due to sample size being too small")  
+    st.subheader("AAs being the most expensive ones, fail to deliver")
+    st.subheader("SSRIs are the run for the buck")
+    st.subheader("SSNRIs are dominating the market in terms of clinical efficacy, though, the evidence is flawed due to sample size being too small")  
            
     
  
     st.header("Your loved one is quite ill and suddenly disappears... Isn't it a chance for a road trip?")
-    st.caption("Beneath is a route that one could possibly take in order to find a runaway - places that are known to be suicide cites")
-    st.caption("Each next point is less remote from the nearest hospital than the previous one - criterion that runaway would have possibly regarded by the time he would disappear")
-    st.caption("Starting Point: Archway Bridge")
+    st.subheader("Beneath is a route that one could possibly take in order to find a runaway - places that are known to be suicide cites")
+    st.subheader("Each next point is less remote from the nearest hospital than the previous one - criterion that runaway would have possibly regarded by the time he would disappear")
+    st.subheader("Starting Point: Archway Bridge")
     list_of_places=['Archway Bridge','Beachy Head','Cliffs of Moher','Clifton Suspension Bridge','Erskine Bridge','Forth Road Bridge','Foyle Bridge','Humber Bridge','Southerndown']
     from geopy.geocoders import Nominatim
     geolocator = Nominatim(user_agent="email@email.com")
