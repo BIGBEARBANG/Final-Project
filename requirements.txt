@@ -3,7 +3,6 @@ seaborn
 translators
 bs4
 requests
-re
 folium
 streamlit
 streamlit_folium
