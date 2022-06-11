@@ -110,7 +110,7 @@ with st.echo(code_location='below'):
     angles += angles[:1]
 
     fig_4 = plt.figure(figsize=(8,8))
-    ax = fig.add_subplot(111, polar=True)
+    ax = fig_4.add_subplot(111, polar=True)
     ax.set_theta_offset(pi / 2)
     ax.set_theta_direction(-1)
     plt.xticks(angles[:-1], categories)
