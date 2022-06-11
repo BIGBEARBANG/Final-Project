@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import translators as ts
-from bs4 import BeautifulSoup
+from beautifulsoup4 import BeautifulSoup
 import requests
 import folium
 import streamlit as st
