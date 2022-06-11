@@ -22,6 +22,18 @@ with st.echo(code_location='below'):
     df_share1=series_stack.to_frame().rename(columns={'Antidepressant Type':'Share'}).reset_index().pivot_table(values='Share',columns='Antidepressant Type',index='Year',aggfunc='first')
     df_share1.loc['Change between 2013-2019']=(((df_share.loc[2019]-df_share.loc[2013])/df_share.loc[2013])).apply(lambda x: f"{x:.0%}")
     df_share1.loc['Change between 2013-2019']=df_share1.loc['Change between 2013-2019'].str.rstrip('%').astype('float') / 100.0
+    
+    st.title("GPs Prescribing Antidepressants in Northern Ireland")
+    st.caption("About Dataset: Датасет содержит информацию о всех рецептах, выданных врачами Северной Ирландии с 2013 по 2019 г. - из них выбраны те, что содержат лекарства из группы антидепрессантов, указанных в реестре Великобритании")        
+    st.header("Types of Antidepressants")
+    st.caption("AA - Atypical Antidepressants - Those that act in a manner that is different from any other types of antidepressants. Reserved for patients who do not respond to other medicine")
+    st.caption("MAOIs - Monoamine oxidase inhibitors - MAOI is an older type of antidepressant that is rarely used nowadays. Comes with dietary restrictions because of the elevated tyramine levels in the blood")
+    st.caption("NRI - Norepinephrine reuptake inhibitor - Contarary to the name, more widely used as a treatment to ADHD and Narcolepsy than to depression for their effect was proven to be indistinguishable from placebo")
+    st.caption("SARIs - Serotonin antagonists and reuptake inhibitors")
+    st.caption("SNRI - Serotonin-noradrenaline reuptake inhibitors - Were designed to be more potent in treating Major Depressive Disorder than their SSRI predecessors, though the evidence on that is uncertain")
+    st.caption("SSRI - Serotonin-noradrenaline reuptake inhibitors - Most widely prescribed ones for the side effects vary from none to moderate")
+    st.caption("TCAs - Tricyclic antidepressants - Used to treat BPD and OCD, as well as MAD")
+    
 
     from matplotlib.pyplot import figure
     sns.set_theme()
@@ -37,6 +49,8 @@ with st.echo(code_location='below'):
     ax2.set_xlabel('Antidepressant Type', fontsize = 17)
     ax2.set_ylabel('Change Between 2013-2019', fontsize = 17)
     st.pyplot(fig_1)
+    st.caption("SNRIs are getting more popular as far as GPs prescription choice goes, the older ones such as MAOIs and TCAs are being substituted for ones that cause lsee concern on the matter of side effects") 
+    
 
     df_anti['Actual Cost (£)'] = df_anti['Actual Cost (£)'].astype('str').str.replace(',','')
     df_anti['Actual Cost (£)'] = pd.to_numeric(df_anti['Actual Cost (£)'])
@@ -64,6 +78,9 @@ with st.echo(code_location='below'):
     sns.regplot(x=df_t.loc['Average amount of prescriptions'],y=df_t.loc['clinical eff'],ax=ax[1])
     plt.ylabel('Clinical Efficacy')
     st.pyplot(fig_2)
+    
+    st.caption("Do GP's choices abide to the intuitive criterion? The more expensive the drug is the less amount of prescriptions are being made. Though the interconnection being present, it is still moderate for the effectiveness usually negates the expenses")
+    st.caption("The interconnection between clinical efficacy, assigned to each drug over the course of 2018 Lancet's investigation, and number of yearly prescriptions is much more prominent")   
 
     import translators as ts
     ru_list=[]
@@ -80,10 +97,14 @@ with st.echo(code_location='below'):
     df_rub=df_rub.rename(index={0: 'Price on Russian Market'}).drop(columns=['Unnamed: 0'])
     df_rub=df_rub.rename(columns={'Агомелатин':'Agomelatine','Амитриптилин':'Amitriptyline','Вортиоксетин':'Vortioxetine','Эсциталопрам':'Escitalopram','Циталопрам':'Citalopram','Кломипрамин':'Clomipramine','Дулоксетин':'Duloxetine','Венлафаксин':'Venlafaxine','Ребоксетин':'Reboxetine','Флувоксамин':'Fluvoxamine', 'Флуоксетин':'Fluoxetine','Сертралин':'Sertraline','Миразапин':'Mirtazapine','Тразодон':'Trazodone','Пароксетин':'Paroxetine'})
     df_ri=df_rub.append(df_tablet.loc['Average cost per tablet 2013-2019']).dropna(axis=1)
-
+    
+    st.header("Is drug pricing in Russia and the UK consistent?")   
+    st.caption("Let us scrape over the https://aptekamos.ru website in search of an average market for each drug in question") 
     fig_3, ax = plt.subplots()
     sns.regplot(x=df_ri.loc['Price on Russian Market'],y=df_ri.loc['Average cost per tablet 2013-2019'],ax=ax)
     st.pyplot(fig_3)
+    
+    st.caption("Mostly, yes. Though there are drugs that fall out of the confidence interval - Mirtazapine and Agomelatine) 
 
     df_sp=df_ri.append([df_t.loc['Average amount of prescriptions'],df_t.loc['clinical eff']]).dropna(axis=1).transpose().reset_index()
     df_sp['Antidepressant Type']=df_sp['index'].map(types_of_antidepressants)
@@ -91,6 +112,8 @@ with st.echo(code_location='below'):
     df_spider['Price on Russian Market']=df_spider['Price on Russian Market']/(df_spider.loc[3]['Price on Russian Market']/df_spider.loc[3]['Clinical efficacy'])
     df_spider['Average cost per tablet 2013-2019']=df_spider['Average cost per tablet 2013-2019']/(df_spider.loc[3]['Average cost per tablet 2013-2019']/df_spider.loc[3]['Clinical efficacy'])
     df_spider['Average amount of prescriptions']=df_spider['Average amount of prescriptions']/(df_spider.loc[3]['Average amount of prescriptions']/df_spider.loc[3]['Clinical efficacy'])
+    
+    st.header("Grading Antidepressant Types")           
 
     ##https://www.python-graph-gallery.com/391-radar-chart-with-several-individuals
     import numpy as np
@@ -113,7 +136,16 @@ with st.echo(code_location='below'):
     plt.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1))
     ax.tick_params(pad=70)
     st.pyplot(fig_4)
+    st.caption("AAs being the most expensive ones, fail to deliver)
+    st.caption("SSRIs are the run for the buck")
+    st.caption("SSNRIs are dominating the market in terms of clinical efficacy, though, the evidence is flawed due to sample size being too small")  
+           
     
+ 
+    st.header("Your loved one is quite ill and suddenly disappears... Isn't it a chance for a road trip?")
+    st.caption("Beneath is a route that one could possibly take in order to find a runaway - places that are known to be suicide cites")
+    st.caption("Each next point is less remote from the nearest hospital than the previous one - criterion that runaway would have possibly regarded by the time he would disappear")
+    st.caption("Starting Point: Archway Bridge")
     list_of_places=['Archway Bridge','Beachy Head','Cliffs of Moher','Clifton Suspension Bridge','Erskine Bridge','Forth Road Bridge','Foyle Bridge','Humber Bridge','Southerndown']
     from geopy.geocoders import Nominatim
     geolocator = Nominatim(user_agent="email@email.com")
