@@ -136,7 +136,7 @@ with st.echo(code_location='below'):
     plt.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1))
     ax.tick_params(pad=70)
     st.pyplot(fig_4)
-    st.caption("AAs being the most expensive ones, fail to deliver)
+    st.caption("AAs being the most expensive ones, fail to deliver")
     st.caption("SSRIs are the run for the buck")
     st.caption("SSNRIs are dominating the market in terms of clinical efficacy, though, the evidence is flawed due to sample size being too small")  
            
