@@ -24,6 +24,7 @@ with st.echo(code_location='below'):
     df_share1.loc['Change between 2013-2019']=df_share1.loc['Change between 2013-2019'].str.rstrip('%').astype('float') / 100.0
     
     st.title("GPs Prescribing Antidepressants in Northern Ireland")
+    st.caption("Please, wait till the map downloads")
     st.caption("About Dataset: Датасет содержит информацию о всех рецептах, выданных врачами Северной Ирландии с 2013 по 2019 г. - из них выбраны те, что содержат лекарства из группы антидепрессантов, указанных в реестре Великобритании")        
     st.header("Types of Antidepressants")
     st.caption("AA - Atypical Antidepressants - Those that act in a manner that is different from any other types of antidepressants. Reserved for patients who do not respond to other medicine")
