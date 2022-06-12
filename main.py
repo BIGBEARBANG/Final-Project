@@ -80,7 +80,7 @@ with st.echo(code_location='below'):
     plt.ylabel('Clinical Efficacy')
     st.pyplot(fig_2)
     
-    st.caption("Do GP's choices abide to the intuitive criterion? The more expensive the drug is the less amount of prescriptions are being made. Though the interconnection being present, it is still moderate for the effectiveness usually negates the expenses")
+    st.caption("Do GP's choices abide to the intuitive criterion? The more expensive the drug is the less amount of prescriptions are being made. Though the interconnection being present, it is still moderate for when it comes to prescribing a drug efficacy usually negates the expense")
     st.caption("The interconnection between clinical efficacy, assigned to each drug over the course of 2018 Lancet's investigation, and number of yearly prescriptions is much more prominent")   
 
     import translators as ts
