@@ -29,7 +29,7 @@ with st.echo(code_location='below'):
     st.header("Types of Antidepressants")
     st.caption("AA - Atypical Antidepressants - Those that act in a manner that is different from any other types of antidepressants. Reserved for patients who do not respond to other medicine")
     st.caption("MAOIs - Monoamine oxidase inhibitors - MAOI is an older type of antidepressant that is rarely used nowadays. Comes with dietary restrictions because of the elevated tyramine levels in the blood")
-    st.caption("NRI - Norepinephrine reuptake inhibitor - Contarary to the name, more widely used as a treatment to ADHD and Narcolepsy than to depression for their effect was proven to be indistinguishable from placebo")
+    st.caption("NRI - Norepinephrine reuptake inhibitor - Contarary to the name, more widely used as a treatment to ADHD and Narcolepsy than to depression for their efficacy in that regard was proven to be indistinguishable from placebo")
     st.caption("SARIs - Serotonin antagonists and reuptake inhibitors")
     st.caption("SNRI - Serotonin-noradrenaline reuptake inhibitors - Were designed to be more potent in treating Major Depressive Disorder than their SSRI predecessors, though the evidence on that is uncertain")
     st.caption("SSRI - Serotonin-noradrenaline reuptake inhibitors - Most widely prescribed ones for the side effects vary from none to moderate")
