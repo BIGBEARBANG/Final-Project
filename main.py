@@ -116,7 +116,7 @@ with st.echo(code_location='below'):
     
     st.header("Grading Antidepressant Types")           
 
-    ##https://www.python-graph-gallery.com/391-radar-chart-with-several-individuals
+    ## FROM: https://www.python-graph-gallery.com/391-radar-chart-with-several-individuals
     import numpy as np
     from numpy import pi
     categories=list(df_spider)[1:]
@@ -135,6 +135,7 @@ with st.echo(code_location='below'):
         ax.plot(angles, values, linewidth=1, linestyle='solid', label=df_spider.loc[i]['Antidepressant Type'])
         ax.fill(angles, values, 'b', alpha=0.1)
     plt.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1))
+    ## END
     ax.tick_params(pad=70)
     st.pyplot(fig_4)
     st.caption("AAs being the most expensive ones, fail to deliver")
