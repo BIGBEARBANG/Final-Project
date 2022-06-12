@@ -100,7 +100,7 @@ with st.echo(code_location='below'):
     df_ri=df_rub.append(df_tablet.loc['Average cost per tablet 2013-2019']).dropna(axis=1)
     
     st.header("Is drug pricing in Russia and the UK consistent?")   
-    st.caption("Let us scrape over the https://aptekamos.ru website in search of an average market for each drug in question") 
+    st.caption("Let us scrape through the https://aptekamos.ru website in search of an average market for each drug in question") 
     fig_3, ax = plt.subplots()
     sns.regplot(x=df_ri.loc['Price on Russian Market'],y=df_ri.loc['Average cost per tablet 2013-2019'],ax=ax)
     st.pyplot(fig_3)
