@@ -86,7 +86,7 @@ with st.echo(code_location='below'):
     import translators as ts
     ru_list=[]
     for i in list_of_antidepressants:
-        ru_list.append(ts.yandex(i, from_language='en', to_language='ru'))
+        ru_list.append(ts.translate_text(i, translator = 'alibaba', from_language='en', to_language='ru'))
     ru_list[3]='Вортиоксетин'
     ru_list[10]='Доксепин'
     ru_list[11]='Ребоксетин'
