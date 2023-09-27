@@ -1,11 +1,10 @@
-pandas <= 1.4.0.
-click<8.0
+pandas < 1.4.0.
 seaborn
 translators
 bs4
 requests
 folium
-streamlit == 0.82.0
+streamlit
 streamlit_folium
 statistics
 geopy
