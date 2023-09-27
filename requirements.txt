@@ -1,6 +1,6 @@
 pandas < 1.4.0.
 seaborn
-translators
+translators == 4.7.20
 bs4
 requests
 folium
