@@ -71,12 +71,12 @@ with st.echo(code_location='below'):
     df_type_count.loc['Average amount of prescriptions']=df_type_count.mean(axis=0)
     clinical_eff={'Agomelatine':0.84, 'Amitriptyline':2.13, 'Citalopram':1.52, 'Clomipramine':1.49, 'Dosulepin':None, 'Doxepin':None, 'Duloxetine':1.85,'Escitalopram':1.68,'Fluoxetine':None,'Fluvoxamine':1.69,'Imipramine':None,'Isocarboxazid':None,'Lofepramine':None,'Mianserin':None,'Mirtazapine':1.89,'Moclobemide':None,'Nortriptyline':None,'Paroxetine':1.75,'Phenelzine':None,'Reboxetine':1.37,'Sertraline':1.67,'Tranylcypromine':None,'Trazodone':1.51,'Venlafaxine':None,'Vortioxetine':None}
     df_eff=pd.DataFrame(clinical_eff, index=['clinical eff',])
-    df_t=pd.concat([df_eff.dropna(axis=1), df_type_count.loc['Average amount of prescriptions']])
+    df_t=pd.concat([df_eff.dropna(axis=1), df_type_count.loc['Average amount of prescriptions']], ignore_index=True)
     df_t=df_t.dropna(axis=1)
 
     fig_2,ax =plt.subplots(1,2,figsize=(15,7))
     sns.regplot(x=df_type_count.loc['Average amount of prescriptions'],y=df_tablet.loc['Average cost per tablet 2013-2019'],ax=ax[0])
-    sns.regplot(x=df_type_count.loc['Average amount of prescriptions'],y=df_t.loc['clinical eff'],ax=ax[1])
+    sns.regplot(x=df_t.loc['Average amount of prescriptions'],y=df_t.loc['clinical eff'],ax=ax[1])
     plt.ylabel('Clinical Efficacy')
     st.pyplot(fig_2)
     
