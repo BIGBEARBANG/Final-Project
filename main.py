@@ -71,7 +71,7 @@ with st.echo(code_location='below'):
     df_type_count.loc['Average amount of prescriptions']=df_type_count.mean(axis=0)
     clinical_eff={'Agomelatine':0.84, 'Amitriptyline':2.13, 'Citalopram':1.52, 'Clomipramine':1.49, 'Dosulepin':None, 'Doxepin':None, 'Duloxetine':1.85,'Escitalopram':1.68,'Fluoxetine':None,'Fluvoxamine':1.69,'Imipramine':None,'Isocarboxazid':None,'Lofepramine':None,'Mianserin':None,'Mirtazapine':1.89,'Moclobemide':None,'Nortriptyline':None,'Paroxetine':1.75,'Phenelzine':None,'Reboxetine':1.37,'Sertraline':1.67,'Tranylcypromine':None,'Trazodone':1.51,'Venlafaxine':None,'Vortioxetine':None}
     df_eff=pd.DataFrame(clinical_eff, index=['clinical eff',])
-    df_t=df_eff.dropna(axis=1).append(df_type_count.loc['Average amount of prescriptions'])
+    df_t=pd.concat(df_eff.dropna(axis=1), df_type_count.loc['Average amount of prescriptions'])
     df_t=df_t.dropna(axis=1)
 
     fig_2,ax =plt.subplots(1,2,figsize=(15,7))
@@ -97,7 +97,7 @@ with st.echo(code_location='below'):
     df_rub.drop(columns=['Unnamed: 0'])
     df_rub=df_rub.rename(index={0: 'Price on Russian Market'}).drop(columns=['Unnamed: 0'])
     df_rub=df_rub.rename(columns={'Агомелатин':'Agomelatine','Амитриптилин':'Amitriptyline','Вортиоксетин':'Vortioxetine','Эсциталопрам':'Escitalopram','Циталопрам':'Citalopram','Кломипрамин':'Clomipramine','Дулоксетин':'Duloxetine','Венлафаксин':'Venlafaxine','Ребоксетин':'Reboxetine','Флувоксамин':'Fluvoxamine', 'Флуоксетин':'Fluoxetine','Сертралин':'Sertraline','Миразапин':'Mirtazapine','Тразодон':'Trazodone','Пароксетин':'Paroxetine'})
-    df_ri=df_rub.append(df_tablet.loc['Average cost per tablet 2013-2019']).dropna(axis=1)
+    df_ri=pd.concat(df_rub,df_tablet.loc['Average cost per tablet 2013-2019']).dropna(axis=1)
     
     st.header("Is drug pricing in Russia and the UK consistent?")   
     st.caption("Let us scrape through the https://aptekamos.ru website in search of an average market for each drug in question") 
@@ -107,7 +107,7 @@ with st.echo(code_location='below'):
     
     st.caption("Mostly, yes. Though there are drugs that fall out of the confidence interval - Mirtazapine and Agomelatine") 
 
-    df_sp=df_ri.append([df_t.loc['Average amount of prescriptions'],df_t.loc['clinical eff']]).dropna(axis=1).transpose().reset_index()
+    df_sp=pd.concat(df_ri,[df_t.loc['Average amount of prescriptions'],df_t.loc['clinical eff']]).dropna(axis=1).transpose().reset_index()
     df_sp['Antidepressant Type']=df_sp['index'].map(types_of_antidepressants)
     df_spider=df_sp.groupby(['Antidepressant Type']).mean().rename(columns={'clinical eff':'Clinical efficacy'}).reset_index()
     df_spider['Price on Russian Market']=df_spider['Price on Russian Market']/(df_spider.loc[3]['Price on Russian Market']/df_spider.loc[3]['Clinical efficacy'])
