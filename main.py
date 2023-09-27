@@ -107,7 +107,7 @@ with st.echo(code_location='below'):
     
     st.caption("Mostly, yes. Though there are drugs that fall out of the confidence interval - Mirtazapine and Agomelatine") 
 
-    df_sp = df_ri.append([df_t.loc['Average amount of prescriptions'],df_t.loc['clinical eff']]]).dropna(axis=1).transpose().reset_index()
+    df_sp = df_ri.append([df_t.loc['Average amount of prescriptions'],df_t.loc['clinical eff']]).dropna(axis=1).transpose().reset_index()
     df_sp['Antidepressant Type']=df_sp['index'].map(types_of_antidepressants)
     df_spider=df_sp.groupby(['Antidepressant Type']).mean().rename(columns={'clinical eff':'Clinical efficacy'}).reset_index()
     df_spider['Price on Russian Market']=df_spider['Price on Russian Market']/(df_spider.loc[3]['Price on Russian Market']/df_spider.loc[3]['Clinical efficacy'])
