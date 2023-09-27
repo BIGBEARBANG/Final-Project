@@ -68,7 +68,7 @@ with st.echo(code_location='below'):
     df_type_count=series_count.to_frame().rename(columns={'VTM_NM':'Amount of prescriptions'}).reset_index().pivot_table(columns='VTM_NM',index='Year',aggfunc='first')
     df_type_count.columns=df_type_count.columns.droplevel()
     df_type_count=df_type_count.drop(columns=['-','Amitriptyline + Perphenazine'])
-    df_type_count.loc['Average amount of prescriptions']=df_type_count.mean(axis=0)
+    df_type_count['Average amount of prescriptions']=df_type_count.mean(axis=0)
     clinical_eff={'Agomelatine':0.84, 'Amitriptyline':2.13, 'Citalopram':1.52, 'Clomipramine':1.49, 'Dosulepin':None, 'Doxepin':None, 'Duloxetine':1.85,'Escitalopram':1.68,'Fluoxetine':None,'Fluvoxamine':1.69,'Imipramine':None,'Isocarboxazid':None,'Lofepramine':None,'Mianserin':None,'Mirtazapine':1.89,'Moclobemide':None,'Nortriptyline':None,'Paroxetine':1.75,'Phenelzine':None,'Reboxetine':1.37,'Sertraline':1.67,'Tranylcypromine':None,'Trazodone':1.51,'Venlafaxine':None,'Vortioxetine':None}
     df_eff=pd.DataFrame(clinical_eff, index=['clinical eff',])
     df_t=pd.concat([df_eff.dropna(axis=1), df_type_count.loc['Average amount of prescriptions']])
