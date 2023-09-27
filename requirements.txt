@@ -4,7 +4,7 @@ translators
 bs4
 requests
 folium
-streamlit
+streamlit == 0.82.0
 streamlit_folium
 statistics
 geopy
