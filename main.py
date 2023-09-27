@@ -16,7 +16,7 @@ with st.echo(code_location='below'):
     df_anti=df_anti.drop(columns=['Unnamed: 0','Practice','BNF Chapter','BNF Section','BNF Paragraph','BNF Sub-Paragraph','Unnamed: 17','Unnamed: 18'])
     types_of_antidepressants={'Agomelatine':'AA','Vortioxetin':'AA','Mianserin':'AA', 'Nortriptyline':'TCA','Amitriptyline':'TCA','Clomipramine':'TCA', 'Dosulepin':'TCA', 'Doxepine':'TCA', 'Imipramine':'TCA', 'Lofepramine':'TCA', 'Mirtazapine':'TCA', 'Trimipramin':'TCA','Escitalopram':'SSRI', 'Citalopram':'SSRI', 'Fluvoxamine':'SSRI', 'Fluoxetine':'SSRI', 'Sertraline':'SSRI', 'Paroxetine':'SSRI','Duloxetine':'SSNRI','Venlafaxine':'SNRI','Reboxetine':'NRI','Isocarboxazid':'MAOI', 'Moclobemide':'MAOI', 'Phenelzine':'MAOI', 'Tranylcypromine':'MAOI','Trazodone':'SARI'}
     df_anti['Antidepressant Type']=df_anti['VTM_NM'].map(types_of_antidepressants)
-    series_stack=df_anti.groupby(['Year','Antidepressant Type'])['Antidepressant Type'].count().divide(df_anti.groupby(['Year','Antidepressant Type'])['Antidepressant Type'].count().sum(level='Year'))
+    series_stack=df_anti.groupby(['Year','Antidepressant Type'])['Antidepressant Type'].count().divide(df_anti.groupby(['Year','Antidepressant Type'])['Antidepressant Type'].count().sum())
     df_share=series_stack.to_frame().rename(columns={'Antidepressant Type':'Share'}).reset_index().pivot_table(values='Share',columns='Antidepressant Type',index='Year',aggfunc='first')
 
     df_share1=series_stack.to_frame().rename(columns={'Antidepressant Type':'Share'}).reset_index().pivot_table(values='Share',columns='Antidepressant Type',index='Year',aggfunc='first')
